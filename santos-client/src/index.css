@@ -1,0 +1,86 @@
+:root {
+  --text: #52606d;
+  --text-h: #14213d;
+  --muted: #6f7b86;
+  --bg: #f7faf8;
+  --surface: #ffffff;
+  --border: #dbe6de;
+  --accent: #0f766e;
+  --shadow: 0 24px 70px rgba(20, 33, 61, 0.11);
+  --shadow-soft: 0 14px 34px rgba(20, 33, 61, 0.07);
+  --sans: Inter, ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 18px/1.55 var(--sans);
+  color: var(--text);
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.12), transparent 34%),
+    linear-gradient(315deg, rgba(245, 158, 11, 0.1), transparent 32%),
+    var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100svh;
+  margin: 0;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1,
+h2 {
+  color: var(--text-h);
+  font-weight: 800;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  font-size: clamp(42px, 7vw, 82px);
+  line-height: 0.98;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #c7d2da;
+    --text-h: #f8fafc;
+    --muted: #9aa8b4;
+    --bg: #101820;
+    --surface: #17222c;
+    --border: #2d3e4b;
+    --accent: #5eead4;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.22);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
