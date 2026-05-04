@@ -5,6 +5,7 @@ const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Articles', to: '/articles' },
+  { label: 'Dashboard', to: '/dashboard' },
 ]
 
 function Navbar() {
