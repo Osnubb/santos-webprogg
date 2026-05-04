@@ -1,62 +1,55 @@
-import reactLogo from '../assets/react.svg'
-import viteLogo from '../assets/vite.svg'
-import heroImg from '../assets/hero.png'
-
-const articles = [
-  {
-    title: 'Why Components Matter',
-    image: reactLogo,
-    body: 'Components keep repeated interface patterns in one place. The navbar, button, and layout can be improved once and reused across every page.',
-  },
-  {
-    title: 'Routing Creates Real Navigation',
-    image: viteLogo,
-    body: 'React Router lets the app move between Home, About, and Articles without reloading the page. It makes the project feel like a complete website.',
-  },
-  {
-    title: 'Design Supports the Content',
-    image: heroImg,
-    body: 'The revised layout uses spacing, contrast, imagery, and a simple custom logo so the landing page is easier to scan on desktop and mobile screens.',
-  },
-]
+import { Link, useParams } from 'react-router-dom'
+import articles from '../assets/article-content.js'
 
 function ArticlePage() {
-  return (
-    <main className="mx-auto max-w-6xl px-4 py-14 lg:px-0">
-      <section className="mb-10 max-w-3xl">
-        <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-teal-700">
-          Articles
-        </p>
-        <h1 className="text-4xl font-black text-slate-950 md:text-5xl">
-          Notes from the Lab Activity 2 build
-        </h1>
-        <p className="mt-4 text-lg leading-8 text-slate-600">
-          These short writeups explain the main improvements made to the
-          project: reusable components, routing, visual content, and responsive
-          design.
-        </p>
-      </section>
+  const { articleId } = useParams()
+  const article = articles.find((item) => item.id === articleId)
 
-      <section className="grid gap-5 md:grid-cols-3">
-        {articles.map((article) => (
-          <article
-            className="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
-            key={article.title}
+  if (!article) {
+    return (
+      <main className="px-5 py-12">
+        <section className="rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+          <p className="text-[11px] font-black uppercase tracking-[0.28em] text-slate-400">
+            Article Missing
+          </p>
+          <h1 className="mt-3 text-3xl font-black text-slate-950">
+            This article is not available.
+          </h1>
+          <Link
+            className="mt-6 inline-flex rounded-full bg-slate-950 px-5 py-3 text-xs font-black uppercase tracking-[0.12em] text-white"
+            to="/articles"
           >
-            <div className="grid h-36 place-items-center rounded-lg bg-slate-50">
-              <img
-                className="max-h-24 max-w-28 object-contain"
-                src={article.image}
-                alt=""
-              />
-            </div>
-            <h2 className="mt-6 text-2xl font-black text-slate-950">
-              {article.title}
-            </h2>
-            <p className="mt-3 leading-7 text-slate-600">{article.body}</p>
-          </article>
-        ))}
-      </section>
+            Back to Articles
+          </Link>
+        </section>
+      </main>
+    )
+  }
+
+  return (
+    <main className="px-5 py-8">
+      <article className="mx-auto max-w-3xl">
+        <div className="grid min-h-56 place-items-center rounded-xl border-2 border-slate-300 bg-slate-200 p-6">
+          <img
+            className="max-h-36 max-w-40 rounded-full object-cover"
+            src={article.image}
+            alt=""
+          />
+        </div>
+        <p className="mt-7 text-[11px] font-black uppercase tracking-[0.28em] text-slate-400">
+          {article.tag}
+        </p>
+        <h1 className="mt-2 text-4xl font-black text-slate-950">
+          {article.title}
+        </h1>
+        <p className="mt-4 text-lg leading-8 text-slate-600">{article.body}</p>
+        <Link
+          className="mt-7 inline-flex rounded-full border border-slate-400 px-5 py-3 text-xs font-black uppercase tracking-[0.12em] text-slate-950"
+          to="/articles"
+        >
+          Back to Articles
+        </Link>
+      </article>
     </main>
   )
 }

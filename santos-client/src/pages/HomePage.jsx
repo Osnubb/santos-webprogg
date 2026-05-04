@@ -4,7 +4,7 @@ import Button from '../components/Button.jsx'
 
 const stats = [
   { value: '03', label: 'Pages' },
-  { value: '05', label: 'Components' },
+  { value: '06', label: 'Components' },
   { value: '24', label: 'Rubric Points' },
   { value: '01', label: 'Custom Logo' },
 ]
@@ -39,7 +39,7 @@ function HomePage() {
             Welcome to Santos Web Programming Layout
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-6 text-slate-500">
-            A component-based React landing page for Lab Activity 2. Built with
+            A component-based React landing page for Lab Activity 3. Built with
             Tailwind CSS, React Router, reusable components, and custom student
             content for Regalado Santos Jr.
           </p>
