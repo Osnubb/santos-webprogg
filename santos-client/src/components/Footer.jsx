@@ -6,7 +6,7 @@ function Footer() {
       <div className="grid gap-6 px-5 py-7 md:grid-cols-[1fr_auto] md:items-center">
         <div>
           <p className="text-[11px] font-black uppercase tracking-[0.22em] text-amber-300">
-            Lab Activity 3
+            Lab Activity 4
           </p>
           <p className="mt-2 text-lg font-black">Regalado Santos Jr.</p>
           <p className="text-sm text-slate-300">INF 233 | regaladosnts@gmail.com</p>

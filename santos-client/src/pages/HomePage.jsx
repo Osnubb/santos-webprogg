@@ -39,9 +39,9 @@ function HomePage() {
             Welcome to Santos Web Programming Layout
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-6 text-slate-500">
-            A component-based React landing page for Lab Activity 3. Built with
-            Tailwind CSS, React Router, reusable components, and custom student
-            content for Regalado Santos Jr.
+            A component-based React project now updated through Lab Activity 4.
+            It includes routing, article pages, authentication screens, and
+            custom student content for Regalado Santos Jr.
           </p>
           <div className="mt-6">
             <Button href="/about">Learn More</Button>

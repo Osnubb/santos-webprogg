@@ -47,9 +47,9 @@ function AboutPage() {
       <section className="mt-8 rounded-lg border border-slate-200 bg-white p-7 shadow-sm">
         <h2 className="text-2xl font-black text-slate-950">Project Goals</h2>
         <p className="mt-3 max-w-3xl leading-8 text-slate-600">
-          Lab Activity 3 adds article content from a data file, a reusable
-          article list, article detail pages, a custom footer, and a not found
-          page for unknown routes.
+          Lab Activity 4 continues the project by adding sign in and sign up
+          pages, an auth layout, and a clearer access point from the navbar
+          while keeping the earlier article and routing work intact.
         </p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {skills.map((skill) => (
