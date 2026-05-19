@@ -12,7 +12,9 @@ import {
 } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import { useDeferredValue, useState } from 'react'
-import users from '../../assets/users.json'
+import { AUTH_STORAGE_KEY } from '../../constants'
+import { getUsers } from '../../UserService'
+import { useEffect } from 'react'
 
 const columns = [
   {
@@ -54,11 +56,39 @@ const columns = [
 ]
 
 function UsersPage() {
+  const [users, setUsers] = useState([])
   const [search, setSearch] = useState('')
   const [roleFilter, setRoleFilter] = useState('All')
   const [genderFilter, setGenderFilter] = useState('All')
   const [statusFilter, setStatusFilter] = useState('All')
+  const [loadError, setLoadError] = useState('')
   const deferredSearch = useDeferredValue(search)
+  const storedUser = JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY) || 'null')
+
+  useEffect(() => {
+    getUsers()
+      .then((data) => {
+        setUsers(data)
+        setLoadError('')
+      })
+      .catch(() => {
+        setLoadError('Unable to load users from the server. Start the backend and MongoDB first.')
+      })
+  }, [])
+
+  if (storedUser?.role === 'Editor') {
+    return (
+      <Stack spacing={2}>
+        <Typography sx={{ fontFamily: '"Georgia", serif', fontSize: { xs: 30, md: 40 } }}>
+          Users access is restricted
+        </Typography>
+        <Typography sx={{ maxWidth: 680, color: '#4b5563' }}>
+          Editors cannot access the Users page in this activity. Please sign in
+          with an Admin account if you need to manage the user list.
+        </Typography>
+      </Stack>
+    )
+  }
 
   const normalizedSearch = deferredSearch.trim().toLowerCase()
 
@@ -159,6 +189,11 @@ function UsersPage() {
           boxShadow: '0 18px 40px rgba(15,23,42,0.08)',
         }}
       >
+        {loadError ? (
+          <Typography sx={{ px: 3, pt: 3, color: '#b91c1c', fontWeight: 700 }}>
+            {loadError}
+          </Typography>
+        ) : null}
         <DataGrid
           autoHeight
           columns={columns}

@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage.jsx'
 import ArticlePage from './pages/ArticlePage.jsx'
 import ArticleListPage from './pages/ArticleListPage.jsx'
 import DashboardPage from './pages/DashboardPages/DashboardPage.jsx'
+import DashArticleListPage from './pages/DashboardPages/DashArticleListPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 import ReportsPage from './pages/DashboardPages/ReportsPage.jsx'
@@ -28,6 +29,7 @@ function App() {
       </Route>
       <Route path="dashboard" element={<DashLayout />}>
         <Route index element={<DashboardPage />} />
+        <Route path="articles" element={<DashArticleListPage />} />
         <Route path="reports" element={<ReportsPage />} />
         <Route path="users" element={<UsersPage />} />
       </Route>

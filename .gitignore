@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+*.log
+santos-client/node_modules/
+santos-server/node_modules/
+santos-client/vite-dev.log
+santos-client/vite-dev.err

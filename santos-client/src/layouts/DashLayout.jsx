@@ -1,4 +1,5 @@
 import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded'
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
@@ -22,6 +23,7 @@ const drawerWidth = 272
 
 const navItems = [
   { label: 'Overview', to: '/dashboard', icon: <DashboardRoundedIcon /> },
+  { label: 'Articles', to: '/dashboard/articles', icon: <ArticleRoundedIcon /> },
   { label: 'Reports', to: '/dashboard/reports', icon: <AssessmentRoundedIcon /> },
   { label: 'Users', to: '/dashboard/users', icon: <GroupRoundedIcon /> },
 ]

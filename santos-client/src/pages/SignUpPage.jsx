@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { AUTH_STORAGE_KEY } from '../constants'
+import { signUpUser } from '../UserService'
 
 const initialForm = {
   fullName: 'Regalado Santos Jr.',
@@ -10,21 +12,25 @@ const initialForm = {
   age: '',
   password: '',
   shortBio: '',
+  role: 'Editor',
+  gender: 'Prefer not to say',
 }
 
 function SignUpPage() {
   const [formData, setFormData] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
+  const [serverMessage, setServerMessage] = useState('')
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setFormData((current) => ({ ...current, [name]: value }))
     setErrors((current) => ({ ...current, [name]: '' }))
     setSubmitted(false)
+    setServerMessage('')
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     const nextErrors = {}
@@ -46,7 +52,20 @@ function SignUpPage() {
     }
 
     setErrors(nextErrors)
-    setSubmitted(Object.keys(nextErrors).length === 0)
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitted(false)
+      return
+    }
+
+    try {
+      const data = await signUpUser(formData)
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(data.user))
+      setSubmitted(true)
+      setServerMessage('Account created successfully. You can now continue to sign in.')
+    } catch (error) {
+      setSubmitted(false)
+      setServerMessage(error.response?.data?.message || 'Unable to create account right now.')
+    }
   }
 
   return (
@@ -180,6 +199,16 @@ function SignUpPage() {
         {submitted ? (
           <p className="md:col-span-2 text-sm font-medium text-teal-700">
             Form looks good. Your beginner-friendly validations all passed.
+          </p>
+        ) : null}
+
+        {serverMessage ? (
+          <p
+            className={`md:col-span-2 text-sm font-medium ${
+              submitted ? 'text-teal-700' : 'text-rose-600'
+            }`}
+          >
+            {serverMessage}
           </p>
         ) : null}
       </form>
