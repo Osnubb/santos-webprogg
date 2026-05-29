@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: santos-server
+    env: node
+    plan: free
+    rootDir: santos-server
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true

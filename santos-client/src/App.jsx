@@ -1,63 +1,40 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout.jsx'
+import DashLayout from './layouts/DashLayout.jsx'
+import AuthLayout from './pages/AuthLayout.jsx'
+import AboutPage from './pages/AboutPage.jsx'
+import ArticlePage from './pages/ArticlePage.jsx'
+import ArticleListPage from './pages/ArticleListPage.jsx'
+import DashboardPage from './pages/DashboardPages/DashboardPage.jsx'
+import DashArticleListPage from './pages/DashboardPages/DashArticleListPage.jsx'
+import HomePage from './pages/HomePage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
+import ReportsPage from './pages/DashboardPages/ReportsPage.jsx'
+import SignInPage from './pages/SignInPage.jsx'
+import SignUpPage from './pages/SignUpPage.jsx'
+import UsersPage from './pages/DashboardPages/UsersPage.jsx'
 
 function App() {
-  const studentDetails = [
-    { label: 'Name', value: 'Regalado Santos Jr.' },
-    { label: 'Email', value: 'regaladosnts@gmail.com' },
-    { label: 'Section', value: 'INF 233' },
-  ]
-
   return (
-    <main className="page-shell">
-      <section className="intro" aria-labelledby="student-name">
-        <div className="hero-mark" aria-hidden="true">
-          <img src={heroImg} className="hero-base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="hero-react" alt="" />
-          <img src={viteLogo} className="hero-vite" alt="" />
-        </div>
-
-        <div className="intro-copy">
-          <p className="eyebrow">Lab Activity 1</p>
-          <h1 id="student-name">Regalado Santos Jr.</h1>
-          <p>
-            A React Vite homepage created for Web Programming, highlighting
-            student information and the completed setup activity.
-          </p>
-        </div>
-      </section>
-
-      <section className="details" aria-label="Student details">
-        {studentDetails.map((detail) => (
-          <article className="detail-card" key={detail.label}>
-            <span>{detail.label}</span>
-            <strong>{detail.value}</strong>
-          </article>
-        ))}
-      </section>
-
-      <section className="summary" aria-labelledby="activity-title">
-        <div>
-          <h2 id="activity-title">React Vite Project Setup</h2>
-          <p>
-            Node.js, npm, and the React Vite project are ready, with the
-            homepage customized for the submitted student profile.
-          </p>
-        </div>
-        <div className="tech-stack" aria-label="Technology stack">
-          <span>
-            <img src={viteLogo} alt="" />
-            Vite
-          </span>
-          <span>
-            <img src={reactLogo} alt="" />
-            React
-          </span>
-        </div>
-      </section>
-    </main>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="articles" element={<ArticleListPage />} />
+        <Route path="articles/:articleId" element={<ArticlePage />} />
+        <Route element={<AuthLayout />}>
+          <Route path="signin" element={<SignInPage />} />
+          <Route path="signup" element={<SignUpPage />} />
+        </Route>
+      </Route>
+      <Route path="dashboard" element={<DashLayout />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="articles" element={<DashArticleListPage />} />
+        <Route path="reports" element={<ReportsPage />} />
+        <Route path="users" element={<UsersPage />} />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   )
 }
 
