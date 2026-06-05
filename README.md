@@ -1,6 +1,6 @@
 # Santos Web Programming Portfolio
 
-This repository contains the React client and Express/MongoDB backend used for the CTWEBPGL long exam portfolio.
+This repository contains the React client and database/API code used for the CTWEBPGL long exam portfolio.
 
 ## Local development
 
@@ -20,30 +20,23 @@ The frontend usually opens at `http://localhost:5173/`. If Vite chooses another 
 
 ## Deployment plan
 
-Recommended hosting setup:
+Recommended hosting setup for the portfolio:
 
 - Frontend: Vercel
-- Backend: Render
+- API/backend routes: Vercel
 - Database: MongoDB Atlas
 
-### Frontend environment variables
+### Vercel environment variables
 
-Set these in Vercel:
+Set these in the Vercel project:
 
-- `VITE_API_URL=https://your-backend.onrender.com/api`
-- `VITE_APP_URL=https://your-frontend.vercel.app`
-
-### Backend environment variables
-
-Set these in Render:
-
-- `PORT=5000`
 - `MONGO_URI=mongodb+srv://...`
 - `JWT_SECRET=your-secret-key`
-- `CLIENT_URL=https://your-frontend.vercel.app`
+
+The frontend automatically uses `/api` on Vercel, so the same project can serve the React pages and the API routes.
 
 ## Notes
 
 - The client uses React Router, so direct page refreshes need SPA rewrites on the host.
-- The backend already allows the local and deployed client origins through CORS.
+- The Vercel project serves both the frontend and the API routes from the same domain.
 - Replace the pending host link in the portfolio document after deployment.
