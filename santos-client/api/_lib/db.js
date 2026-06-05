@@ -6,12 +6,15 @@ if (!cached) {
   cached = global.mongooseCache = { conn: null, promise: null }
 }
 
+const fallbackMongoUri =
+  'mongodb+srv://regaladosnts_db_user:R1WYsY9yPlggDmuJ@cluster0.rccjrej.mongodb.net/?appName=Cluster0'
+
 async function connectDb() {
   if (cached.conn) {
     return cached.conn
   }
 
-  const mongoUri = process.env.MONGO_URI
+  const mongoUri = process.env.MONGO_URI || fallbackMongoUri
 
   if (!mongoUri) {
     throw new Error('MONGO_URI is not set in the Vercel environment.')
